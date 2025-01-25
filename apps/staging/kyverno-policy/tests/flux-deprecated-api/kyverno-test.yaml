@@ -1,0 +1,53 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: flux-deprecated-api
+policies:
+  - ../../flux-deprecated-api.yaml
+resources:
+  - resource-helm-controller.yaml
+  - resource-source-controller.yaml
+  - resource-kustomize-controller.yaml
+results:
+  - kind: HelmRelease
+    policy: flux-deprecated-api
+    resources:
+      - arc-runners
+    result: fail
+    rule: flux-helm-controller-deprecated-api
+  - kind: HelmRelease
+    policy: flux-deprecated-api
+    resources:
+      - github-arc-scale-set-controller
+    result: pass
+    rule: flux-helm-controller-deprecated-api
+  - kind: HelmRepository
+    policy: flux-deprecated-api
+    resources:
+      - helm-bitnami
+    result: fail
+    rule: flux-source-controller-deprecated-api
+  - kind: HelmRepository
+    policy: flux-deprecated-api
+    resources:
+      - helm-curity
+    result: pass
+    rule: flux-source-controller-deprecated-api
+  - kind: Kustomization
+    policy: flux-deprecated-api
+    resources:
+      - curity-idsvr
+    result: fail
+    rule: flux-kustomize-controller-deprecated-api
+  - kind: Kustomization
+    policy: flux-deprecated-api
+    resources:
+      - solace-kinesis
+    result: pass
+    rule: flux-kustomize-controller-deprecated-api
+  - kind: Kustomization
+    policy: flux-deprecated-api
+    resources:
+      - dev-infosys
+    result: pass
+    rule: flux-kustomize-controller-deprecated-api
