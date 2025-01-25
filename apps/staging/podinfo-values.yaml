@@ -10,6 +10,8 @@ spec:
   test:
     enable: false
   values:
+    image:
+      tag: 6.7.0
     ingress:
       hosts:
         - host: podinfo.staging
