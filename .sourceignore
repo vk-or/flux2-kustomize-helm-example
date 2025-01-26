@@ -10,4 +10,4 @@
 !/infrastructure/
 
 # Exclude Kyverno tests
-**/kyverno-policy/test/*
+**/kyverno-policy/test/**
