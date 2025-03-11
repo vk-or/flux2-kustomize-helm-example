@@ -16,9 +16,10 @@ spec:
     - name: flux-helm-controller-deprecated-api
       match:
         any:
-          - resources:
-            kinds:
-              - helm.toolkit.fluxcd.io/*/HelmRelease    
+        - resources:
+          kinds:
+            - helm.toolkit.fluxcd.io/*/HelmRelease 
+            - source.toolkit.fluxcd.io/*/Bucket   
       celPreconditions:
         - name: "allowed-api-versions"
           expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2']"
