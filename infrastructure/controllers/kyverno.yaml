@@ -45734,7 +45734,7 @@ spec:
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
             - --loggingFormat=text
-            - --v=2
+            - --v=4
             - --enablePolicyException=true
             - --reportsChunkSize=1000
             - --allowInsecureRegistry=false
