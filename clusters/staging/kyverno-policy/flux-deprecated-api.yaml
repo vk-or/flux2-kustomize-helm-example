@@ -12,6 +12,7 @@ metadata:
 spec:
   validationFailureAction: Audit
   background: true
+  applyRules: One
   rules:
     - name: flux-helm-controller-deprecated-api
       context:
