@@ -37,6 +37,37 @@ spec:
               - key: "{{ request.object.apiVersion }}"
                 operator: AnyNotIn
                 value: "{{ validHelmControllerApiVersion }}"
+    - name: source-controller-api-v1
+      context:
+        - name: validSourceControllerApiVersionStable
+          variable:
+            value: source.toolkit.fluxcd.io/v1
+      match:
+        any:
+          - resources:
+              kinds:
+                - source.toolkit.fluxcd.io/*/Bucket
+                - Bucket
+                - source.toolkit.fluxcd.io/*/GitRepository
+                - GitRepository
+                - source.toolkit.fluxcd.io/*/HelmChart
+                - HelmChart
+                - source.toolkit.fluxcd.io/*/HelmRepository
+                - HelmRepository
+      validate:
+        failureAction: Audit
+        message: >-
+          Kind "{{ request.object.kind }}" with
+          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+          is using deprecated API version "{{ request.object.apiVersion }}".
+          Use API version "{{ validSourceControllerApiVersionStable }}".
+          See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.apiVersion }}"
+                operator: AnyNotIn
+                value: "{{ validSourceControllerApiVersionStable }}"
     # - name: flux-source-controller-deprecated-api
     #   context:
     #     - name: validSourceControllerApiVersion
