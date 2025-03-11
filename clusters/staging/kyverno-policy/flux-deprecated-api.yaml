@@ -13,56 +13,51 @@ spec:
   background: true
   rules:
     - name: flux-helm-controller-deprecated-api
-      context:
-        - name: validHelmControllerApiVersion
-          variable:
-            value: helm.toolkit.fluxcd.io/v2
       match:
         any:
           - resources:
-              kinds:
-                - HelmRelease
+            kinds:
+              - HelmRelease
       validate:
         failureAction: Audit
         message: >-
           "{{ request.object.kind }}" with
           name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
           is using deprecated API version "{{ request.object.apiVersion }}".
-          Use API version "{{ validHelmControllerApiVersion }}".
           See: https://fluxcd.io/flux/components/helm/api/v2/
         deny:
           conditions:
             any:
               - key: "{{ request.object.apiVersion }}"
                 operator: AnyNotIn
-                value: "{{ validHelmControllerApiVersion }}"
-    - name: source-controller-api-v1
-      context:
-        - name: validSourceControllerApiVersionStable
-          variable:
-            value: source.toolkit.fluxcd.io/v12
-      match:
-        any:
-          - resources:
-              kinds:
-                - Bucket
-                - GitRepository
-                - HelmChart
-                - HelmRepository
-      validate:
-        failureAction: Audit
-        message: >-
-          Kind "{{ request.object.kind }}" with
-          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
-          is using deprecated API version "{{ request.object.apiVersion }}".
-          Use API version "{{ validSourceControllerApiVersionStable }}".
-          See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
-        deny:
-          conditions:
-            any:
-              - key: "{{ request.object.apiVersion }}"
-                operator: AnyNotIn
-                value: "{{ validSourceControllerApiVersionStable }}"
+                value: "helm.toolkit.fluxcd.io/v2"
+    # - name: source-controller-api-v1
+    #   context:
+    #     - name: validSourceControllerApiVersionStable
+    #       variable:
+    #         value: source.toolkit.fluxcd.io/v12
+    #   match:
+    #     any:
+    #       - resources:
+    #           kinds:
+    #             - Bucket
+    #             - GitRepository
+    #             - HelmChart
+    #             - HelmRepository
+    #   validate:
+    #     failureAction: Audit
+    #     message: >-
+    #       Kind "{{ request.object.kind }}" with
+    #       name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+    #       is using deprecated API version "{{ request.object.apiVersion }}".
+    #       Use API version "{{ validSourceControllerApiVersionStable }}".
+    #       See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
+    #     deny:
+    #       conditions:
+    #         any:
+    #           - key: "{{ request.object.apiVersion }}"
+    #             operator: AnyNotIn
+    #             value: "{{ validSourceControllerApiVersionStable }}"
                 
     # - name: flux-source-controller-deprecated-api
     #   context:
