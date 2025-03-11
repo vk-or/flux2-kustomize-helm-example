@@ -48,7 +48,7 @@ spec:
       validate:
         cel:
           expressions:
-            - expression: "true"
+            - expression: "false"
               messageExpression: >-
                 object.apiVersion + '/' + object.kind + ' is deprecated in Flux v2.4.
                 See: https://'
