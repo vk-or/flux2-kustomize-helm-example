@@ -45729,12 +45729,12 @@ spec:
             - --validatingAdmissionPolicyReports=false
             - --backgroundScan=true
             - --backgroundScanWorkers=2
-            - --backgroundScanInterval=5m
+            - --backgroundScanInterval=2m
             - --skipResourceFilters=true
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
             - --loggingFormat=text
-            - --v=4
+            - --v=6
             - --enablePolicyException=true
             - --reportsChunkSize=1000
             - --allowInsecureRegistry=false
