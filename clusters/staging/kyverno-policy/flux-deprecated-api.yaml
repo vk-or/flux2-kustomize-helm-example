@@ -11,13 +11,35 @@ metadata:
     policies.kyverno.io/subject: Flux APIs
 spec:
   validationFailureAction: Audit
-  background: true
+  background: true  
   rules:
+    # - name: validate-v1-25-removals
+    #   match:
+    #     any:
+    #     - resources:
+    #         # NOTE: PodSecurityPolicy is completely removed in 1.25.
+    #         kinds:
+    #         - batch/*/CronJob
+    #         - discovery.k8s.io/*/EndpointSlice
+    #         - events.k8s.io/*/Event
+    #         - policy/*/PodDisruptionBudget
+    #         - policy/*/PodSecurityPolicy
+    #         - node.k8s.io/*/RuntimeClass
+    #   celPreconditions:
+    #     - name: "allowed-api-versions"
+    #       expression: "object.apiVersion in ['batch/v1beta1', 'discovery.k8s.io/v1beta1', 'events.k8s.io/v1beta1', 'policy/v1beta1', 'node.k8s.io/v1beta1']"
+    #   validate:
+    #     cel:
+    #       expressions:
+    #         - expression: "false"
+    #           messageExpression: >-
+    #             object.apiVersion + '/' + object.kind + ' is deprecated and will be removed in v1.25.
+    #             See: https://kubernetes.io/docs/reference/using-api/deprecation-guide/'
     - name: flux-helm-controller-deprecated-api
       match:
         any:
         - resources:
-          kinds:
+            kinds:
             - helm.toolkit.fluxcd.io/*/HelmRelease 
             - source.toolkit.fluxcd.io/*/Bucket   
       celPreconditions:
