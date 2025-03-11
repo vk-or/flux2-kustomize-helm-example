@@ -45347,7 +45347,7 @@ spec:
             - --autoUpdateWebhooks=true
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
-            - --dumpPayload=false
+            - --dumpPayload=true
             - --forceFailurePolicyIgnore=false
             - --generateValidatingAdmissionPolicy=false
             - --loggingFormat=text
