@@ -17,20 +17,18 @@ spec:
         any:
           - resources:
             kinds:
-              - HelmRelease
+              - helm.toolkit.fluxcd.io/*/HelmRelease    
+      celPreconditions:
+        - name: "allowed-api-versions"
+          expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2']"
       validate:
         failureAction: Audit
-        message: >-
-          "{{ request.object.kind }}" with
-          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
-          is using deprecated API version "{{ request.object.apiVersion }}".
-          See: https://fluxcd.io/flux/components/helm/api/v2/
-        deny:
-          conditions:
-            any:
-              - key: "{{ request.object.apiVersion }}"
-                operator: AnyNotIn
-                value: "helm.toolkit.fluxcd.io/v2"
+        cel:
+          expressions:
+            - expression: "true"
+              messageExpression: >-
+                object.apiVersion + '/' + object.kind + ' is deprecated in Flux v2.4.
+                See: https://'
     # - name: source-controller-api-v1
     #   context:
     #     - name: validSourceControllerApiVersionStable
