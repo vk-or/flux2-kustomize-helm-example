@@ -10,6 +10,7 @@ metadata:
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Flux APIs
 spec:
+  validationFailureAction: Audit
   background: true
   rules:
     - name: flux-helm-controller-deprecated-api
@@ -22,7 +23,6 @@ spec:
         - name: "allowed-api-versions"
           expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2']"
       validate:
-        failureAction: Audit
         cel:
           expressions:
             - expression: "true"
