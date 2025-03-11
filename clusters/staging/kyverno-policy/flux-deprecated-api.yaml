@@ -33,46 +33,46 @@ spec:
           See: https://fluxcd.io/flux/components/helm/api/v2/
         pattern:
           apiVersion: "{{ validHelmControllerApiVersion }}"
-    - name: flux-source-controller-deprecated-api
-      context:
-        - name: validSourceControllerApiVersion
-          variable:
-            value: source.toolkit.fluxcd.io/v1
-      match:
-        any:
-          - resources:
-              kinds:
-                - Bucket
-                - GitRepository
-                - HelmChart
-                - HelmRepository
-      validate:
-        message: >-
-          "{{ request.object.kind }}" with
-          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
-          is using deprecated API version "{{ request.object.apiVersion }}".
-          Use API version "{{ validSourceControllerApiVersion }}".
-          See: https://fluxcd.io/flux/components/source/api/v1/
-        pattern:
-          apiVersion: "{{ validSourceControllerApiVersion }}"
-    - name: flux-kustomize-controller-deprecated-api
-      context:
-        - name: validKustomizeControllerApiVersion
-          variable:
-            value: kustomize.toolkit.fluxcd.io/v1
-      match:
-        any:
-          - resources:
-              kinds:
-                - kustomize.toolkit.fluxcd.io/*/Kustomization # only match Flux Kustomization resources
-      validate:
-        message: >-
-          "{{ request.object.kind }}" with
-          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
-          is using deprecated API version "{{ request.object.apiVersion }}".
-          Use API version "{{ validKustomizeControllerApiVersion }}".
-          See: https://fluxcd.io/flux/components/kustomize/api/v1/
-        pattern:
-          apiVersion: "{{ validKustomizeControllerApiVersion }}"
+    # - name: flux-source-controller-deprecated-api
+    #   context:
+    #     - name: validSourceControllerApiVersion
+    #       variable:
+    #         value: source.toolkit.fluxcd.io/v1
+    #   match:
+    #     any:
+    #       - resources:
+    #           kinds:
+    #             - Bucket
+    #             - GitRepository
+    #             - HelmChart
+    #             - HelmRepository
+    #   validate:
+    #     message: >-
+    #       "{{ request.object.kind }}" with
+    #       name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+    #       is using deprecated API version "{{ request.object.apiVersion }}".
+    #       Use API version "{{ validSourceControllerApiVersion }}".
+    #       See: https://fluxcd.io/flux/components/source/api/v1/
+    #     pattern:
+    #       apiVersion: "{{ validSourceControllerApiVersion }}"
+    # - name: flux-kustomize-controller-deprecated-api
+    #   context:
+    #     - name: validKustomizeControllerApiVersion
+    #       variable:
+    #         value: kustomize.toolkit.fluxcd.io/v1
+    #   match:
+    #     any:
+    #       - resources:
+    #           kinds:
+    #             - kustomize.toolkit.fluxcd.io/*/Kustomization # only match Flux Kustomization resources
+    #   validate:
+    #     message: >-
+    #       "{{ request.object.kind }}" with
+    #       name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+    #       is using deprecated API version "{{ request.object.apiVersion }}".
+    #       Use API version "{{ validKustomizeControllerApiVersion }}".
+    #       See: https://fluxcd.io/flux/components/kustomize/api/v1/
+    #     pattern:
+    #       apiVersion: "{{ validKustomizeControllerApiVersion }}"
 
 
