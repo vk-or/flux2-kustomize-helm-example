@@ -31,8 +31,12 @@ spec:
           is using deprecated API version "{{ request.object.apiVersion }}".
           Use API version "{{ validHelmControllerApiVersion }}".
           See: https://fluxcd.io/flux/components/helm/api/v2/
-        pattern:
-          apiVersion: "{{ validHelmControllerApiVersion }}"
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.apiVersion }}"
+                operator: AnyNotIn
+                value: "{{ validHelmControllerApiVersion }}"
     # - name: flux-source-controller-deprecated-api
     #   context:
     #     - name: validSourceControllerApiVersion
