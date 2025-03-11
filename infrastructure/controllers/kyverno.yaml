@@ -45351,7 +45351,7 @@ spec:
             - --forceFailurePolicyIgnore=false
             - --generateValidatingAdmissionPolicy=false
             - --loggingFormat=text
-            - --v=2
+            - --v=4
             - --enablePolicyException=true
             - --protectManagedResources=false
             - --allowInsecureRegistry=false
