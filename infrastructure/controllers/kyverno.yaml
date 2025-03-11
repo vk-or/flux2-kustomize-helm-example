@@ -45729,7 +45729,7 @@ spec:
             - --validatingAdmissionPolicyReports=false
             - --backgroundScan=true
             - --backgroundScanWorkers=2
-            - --backgroundScanInterval=1m
+            - --backgroundScanInterval=5m
             - --skipResourceFilters=true
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
