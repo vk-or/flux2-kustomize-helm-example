@@ -40,7 +40,7 @@ spec:
       context:
         - name: validSourceControllerApiVersionStable
           variable:
-            value: source.toolkit.fluxcd.io/v1
+            value: source.toolkit.fluxcd.io/v12
       match:
         any:
           - resources:
