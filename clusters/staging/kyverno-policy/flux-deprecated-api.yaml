@@ -24,7 +24,7 @@ spec:
       preconditions:
         all:
         - key: "{{request.object.apiVersion}}"
-          operator: AnyIn
+          operator: AllNotIn
           value:
           - helm.toolkit.fluxcd.io/v2
       validate:
