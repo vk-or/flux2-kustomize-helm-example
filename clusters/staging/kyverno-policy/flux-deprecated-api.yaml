@@ -19,6 +19,12 @@ spec:
         - resources:
             kinds:
             - helm.toolkit.fluxcd.io/*/HelmRelease 
+            namespaceSelector:
+              matchExpressions:
+                - key: type 
+                  operator: In
+                  values: 
+                  - ingress-nginx
       celPreconditions:
          - name: "allowed-api-versions"
            expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
