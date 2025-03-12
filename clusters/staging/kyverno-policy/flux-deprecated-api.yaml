@@ -16,10 +16,10 @@ spec:
     match:
       any:
       - resources:
-        kinds:
-        - HelmRelease
-        apiVersions:
-        - helm.toolkit.fluxcd.io/v1
+          kinds:
+          - HelmRelease
+          apiVersions:
+          - helm.toolkit.fluxcd.io/v1
     validate:
       message: "HelmRelease with helm.toolkit.fluxcd.io/v1 API version found. Consider updating to a newer API version."
       deny: {} # this will create a policy violation.
