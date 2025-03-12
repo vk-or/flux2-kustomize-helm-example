@@ -18,6 +18,7 @@ spec:
       - resources:
           kinds:
           - helm.toolkit.fluxcd.io/*/HelmRelease
+          - HelmRelease
     celPreconditions:
       - name: "allowed-api-versions"
         expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2beta1', 'helm.toolkit.fluxcd.io/v2beta2']"
