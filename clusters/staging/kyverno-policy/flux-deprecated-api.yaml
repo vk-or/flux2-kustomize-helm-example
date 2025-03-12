@@ -10,7 +10,8 @@ metadata:
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Flux APIs
 spec:
-  background: true  
+  background: true
+  
   rules:
     - name: flux-helm-controller-deprecated-api
       match:
@@ -18,17 +19,18 @@ spec:
         - resources:
             kinds:
             - helm.toolkit.fluxcd.io/*/HelmRelease 
-      celPreconditions:
-        - name: "allowed-api-versions"
-          expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
+      # celPreconditions:
+      #   - name: "allowed-api-versions"
+      #     expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
       validate:
+        failureAction: Audit
         cel:
           expressions:
-            - expression: "false"
+            # - expression: "false"
+            - expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
               messageExpression: >-
                 object.apiVersion + '/' + object.kind + ' in ns ' + namespaceObject.metadata.name + ' is deprecated in Flux v2.4.
                 See: https://'
-        failureAction: Audit
     # - name: flux-source-controller-deprecated-api
     #   match:
     #     any:
