@@ -18,7 +18,7 @@ spec:
         any:
         - resources:
             kinds:
-            - helm.toolkit.fluxcd.io/*/HelmRelease 
+            - HelmRelease 
             namespaceSelector:
               matchExpressions:
                 - key: type 
