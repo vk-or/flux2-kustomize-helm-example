@@ -43,7 +43,7 @@ spec:
             - helm.toolkit.fluxcd.io/*/HelmRelease 
       celPreconditions:
         - name: "allowed-api-versions"
-          expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2']"
+          expression: "object.apiVersion not in ['helm.toolkit.fluxcd.io/v2']"
       validate:
         cel:
           expressions:
