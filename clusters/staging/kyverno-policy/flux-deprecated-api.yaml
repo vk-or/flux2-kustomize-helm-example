@@ -27,7 +27,7 @@ spec:
         cel:
           expressions:
             # - expression: "false"
-            - expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
+            - expression: "object.apiVersion in ['helm.toolkit.fluxcd.io/v2']"
               messageExpression: >-
                 object.apiVersion + '/' + object.kind + ' in ns ' + namespaceObject.metadata.name + ' is deprecated in Flux v2.4.
                 See: https://'
