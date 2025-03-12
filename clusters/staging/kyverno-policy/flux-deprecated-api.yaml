@@ -34,6 +34,9 @@ spec:
           name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
           is using deprecated API version "{{ request.object.apiVersion }}".
           Use API version "helm.toolkit.fluxcd.io/v2".
+        cel:
+          expressions:
+             - expression: "false"
       # celPreconditions:
       #    - name: "allowed-api-versions"
       #      expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
