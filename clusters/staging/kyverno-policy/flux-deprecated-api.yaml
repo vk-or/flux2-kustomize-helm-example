@@ -32,7 +32,7 @@ spec:
         cel:
           expressions:
             - expression: "false"
-              message: >-
+              messageExpression: >-
                 Kind request.object.kind with
                 name request.object.metadata.name in namespace request.object.metadata.namespace
                 is using deprecated API version request.object.apiVersion.
