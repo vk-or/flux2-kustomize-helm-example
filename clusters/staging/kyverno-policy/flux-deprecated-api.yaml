@@ -33,10 +33,7 @@ spec:
           expressions:
             - expression: "false"
               messageExpression: >-
-                'Kind ' + request.object.kind + ' with 
-                name ' + request.object.metadata.name + ' in namespace ' + request.object.metadata.namespace +
-                'is using deprecated API version ' + request.object.apiVersion +
-                'Use API version "helm.toolkit.fluxcd.io/v2".'
+                object.apiVersion + '/' + object.kind + ' in ns ' + namespaceObject.metadata.name + ' is deprecated'
       # celPreconditions:
       #    - name: "allowed-api-versions"
       #      expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
