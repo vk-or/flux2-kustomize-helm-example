@@ -51119,7 +51119,7 @@ spec:
             - --metricsPort=8000
             - --admissionReports=true
             - --maxAdmissionReports=1000
-            - --autoUpdateWebhooks=false
+            - --autoUpdateWebhooks=true
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
             - --dumpPayload=false
@@ -51525,7 +51525,7 @@ spec:
             - --disableMetrics=false
             - --otelConfig=prometheus
             - --metricsPort=8000
-            - --resyncPeriod=15m
+            - --resyncPeriod=2m
             - --admissionReports=true
             - --aggregateReports=true
             - --policyReports=true
