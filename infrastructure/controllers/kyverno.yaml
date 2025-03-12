@@ -51119,7 +51119,7 @@ spec:
             - --metricsPort=8000
             - --admissionReports=true
             - --maxAdmissionReports=1000
-            - --autoUpdateWebhooks=true
+            - --autoUpdateWebhooks=false
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
             - --dumpPayload=false
@@ -51532,7 +51532,7 @@ spec:
             - --validatingAdmissionPolicyReports=false
             - --backgroundScan=true
             - --backgroundScanWorkers=2
-            - --backgroundScanInterval=1h
+            - --backgroundScanInterval=2m
             - --skipResourceFilters=true
             - --enableConfigMapCaching=true
             - --enableDeferredLoading=true
