@@ -51538,7 +51538,7 @@ spec:
             - --enableDeferredLoading=true
             - --maxAPICallResponseLength=2000000
             - --loggingFormat=text
-            - --v=2
+            - --v=6
             - --omitEvents=PolicyApplied,PolicySkipped
             - --enablePolicyException=false
             - --allowInsecureRegistry=false
