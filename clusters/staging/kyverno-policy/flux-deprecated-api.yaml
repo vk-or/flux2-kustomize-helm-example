@@ -23,6 +23,9 @@ spec:
             - ingress-nginx
       preconditions:
         all:
+        - key: "{{ request.operation || 'BACKGROUND' }}"
+          operator: NotEquals
+          value: DELETE
         - key: "{{request.object.apiVersion}}"
           operator: AllNotIn
           value:
