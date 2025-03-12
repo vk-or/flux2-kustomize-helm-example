@@ -22,13 +22,13 @@ spec:
         - name: "allowed-api-versions"
           expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
       validate:
-        failureAction: Audit
         cel:
           expressions:
             - expression: "false"
               messageExpression: >-
                 object.apiVersion + '/' + object.kind + ' in ns ' + namespaceObject.metadata.name + ' is deprecated in Flux v2.4.
                 See: https://'
+        failureAction: Audit
     # - name: flux-source-controller-deprecated-api
     #   match:
     #     any:
