@@ -29,24 +29,24 @@ spec:
               messageExpression: >-
                 object.apiVersion + '/' + object.kind + ' in ns ' + namespaceObject.metadata.name + ' is deprecated in Flux v2.4.
                 See: https://'
-    - name: flux-source-controller-deprecated-api
-      match:
-        any:
-        - resources:
-            kinds:
-            - source.toolkit.fluxcd.io/*/Bucket
-            - source.toolkit.fluxcd.io/*/GitRepository
-            - source.toolkit.fluxcd.io/*/HelmChart
-            - source.toolkit.fluxcd.io/*/HelmRepository
-      celPreconditions:
-        - name: "allowed-api-versions"
-          expression: "!(object.apiVersion in ['source.toolkit.fluxcd.io/v1'])"
-      validate:
-        failureAction: Audit
-        cel:
-          expressions:
-            - expression: "false"
-              messageExpression: >-
-                object.apiVersion + '/' + object.kind + ' is deprecated in Flux v2.4.
-                See: https://'
+    # - name: flux-source-controller-deprecated-api
+    #   match:
+    #     any:
+    #     - resources:
+    #         kinds:
+    #         - source.toolkit.fluxcd.io/*/Bucket
+    #         - source.toolkit.fluxcd.io/*/GitRepository
+    #         - source.toolkit.fluxcd.io/*/HelmChart
+    #         - source.toolkit.fluxcd.io/*/HelmRepository
+    #   celPreconditions:
+    #     - name: "allowed-api-versions"
+    #       expression: "!(object.apiVersion in ['source.toolkit.fluxcd.io/v1'])"
+    #   validate:
+    #     failureAction: Audit
+    #     cel:
+    #       expressions:
+    #         - expression: "false"
+    #           messageExpression: >-
+    #             object.apiVersion + '/' + object.kind + ' is deprecated in Flux v2.4.
+    #             See: https://'
    
