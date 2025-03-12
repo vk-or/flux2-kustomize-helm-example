@@ -23,7 +23,7 @@ spec:
       #   - name: "allowed-api-versions"
       #     expression: "!(object.apiVersion in ['helm.toolkit.fluxcd.io/v2'])"
       validate:
-        failureAction: Audit
+        # failureAction: Audit
         cel:
           expressions:
             # - expression: "false"
