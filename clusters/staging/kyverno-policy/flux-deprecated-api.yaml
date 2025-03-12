@@ -12,7 +12,7 @@ metadata:
 spec:
   background: true
   rules:
-  - name: validate-flux-v2.4-removalsapiVersion: kyverno.io/v1
+  - name: validate-flux-v2.4-removal
     match:
       any:
       - resources:
