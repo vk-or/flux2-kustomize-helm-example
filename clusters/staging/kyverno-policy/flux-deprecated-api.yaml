@@ -33,28 +33,28 @@ spec:
           See: https://v2-4.docs.fluxcd.io/flux/components/helm/api/v2/
         pattern:
           apiVersion: "{{ validHelmControllerApiVersionStable }}"
-    - name: source-controller-api-v1
-      context:
-        - name: validSourceControllerApiVersionStable
-          variable:
-            value: source.toolkit.fluxcd.io/v1
-      match:
-        any:
-          - resources:
-              kinds:
-                - source.toolkit.fluxcd.io/*/Bucket
-                - source.toolkit.fluxcd.io/*/GitRepository
-                - source.toolkit.fluxcd.io/*/HelmChart
-                - source.toolkit.fluxcd.io/*/HelmRepository
-      validate:
-        message: >-
-          Kind "{{ request.object.kind }}" with
-          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
-          is using deprecated API version "{{ request.object.apiVersion }}".
-          Use API version "{{ validSourceControllerApiVersionStable }}".
-          See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
-        pattern:
-          apiVersion: "{{ validSourceControllerApiVersionStable }}"
+    # - name: source-controller-api-v1
+    #   context:
+    #     - name: validSourceControllerApiVersionStable
+    #       variable:
+    #         value: source.toolkit.fluxcd.io/v1
+    #   match:
+    #     any:
+    #       - resources:
+    #           kinds:
+    #             - source.toolkit.fluxcd.io/*/Bucket
+    #             - source.toolkit.fluxcd.io/*/GitRepository
+    #             - source.toolkit.fluxcd.io/*/HelmChart
+    #             - source.toolkit.fluxcd.io/*/HelmRepository
+    #   validate:
+    #     message: >-
+    #       Kind "{{ request.object.kind }}" with
+    #       name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+    #       is using deprecated API version "{{ request.object.apiVersion }}".
+    #       Use API version "{{ validSourceControllerApiVersionStable }}".
+    #       See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
+    #     pattern:
+    #       apiVersion: "{{ validSourceControllerApiVersionStable }}"
 
 # ---
 # apiVersion: kyverno.io/v1
