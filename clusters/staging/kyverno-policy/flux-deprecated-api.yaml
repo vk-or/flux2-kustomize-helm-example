@@ -11,7 +11,7 @@ metadata:
     policies.kyverno.io/subject: Flux APIs
 spec:
   validationFailureAction: Enforce
-  # background: true
+  background: false
   rules:
     - name: helm-controller-api-v2
       context:
