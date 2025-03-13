@@ -1,5 +1,5 @@
 ---
-apiVersion: kyverno.io/v1
+apiVersion: kyverno.io/v2
 kind: ClusterPolicy
 metadata:
   name: flux-deprecated-apis
@@ -23,6 +23,7 @@ spec:
           - resources:
               kinds:
                 - HelmRelease
+              
       validate:
         message: >-
           Kind "{{ request.object.kind }}" with
