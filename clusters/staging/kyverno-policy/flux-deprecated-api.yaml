@@ -11,7 +11,7 @@ metadata:
     policies.kyverno.io/subject: Flux APIs
 spec:
   validationFailureAction: Audit
-  background: true
+  # background: true
   rules:
     - name: helm-controller-api-v2
       context:
@@ -23,7 +23,8 @@ spec:
           - resources:
               kinds:
                 - HelmRelease
-              
+              namespaces:
+                - ingress-nginx
       validate:
         message: >-
           Kind "{{ request.object.kind }}" with
