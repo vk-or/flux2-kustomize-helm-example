@@ -2,25 +2,82 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: flux-deprecated-api
+  name: flux-deprecated-apis
   annotations:
-    policies.kyverno.io/title: Check for deprecated HelmRelease API version
-    policies.kyverno.io/category: Flux
-    policies.kyverno.io/minversion: 1.13.0
+    policies.kyverno.io/title: Check for deprecated Flux API versions for version 2.4.0
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/minversion: 1.6.0
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Flux APIs
 spec:
+  validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-flux-v2.4-removal
-    match:
-      any:
-      - resources:
-          kinds:
-          - helm.toolkit.fluxcd.io/v1/HelmRelease
-    validate:
-      message: "HelmRelease with helm.toolkit.fluxcd.io/v1 API version found. Consider updating to a newer API version."
-      deny: {} # this will create a policy violation.
+    - name: helm-controller-api-v2
+      context:
+        - name: validHelmControllerApiVersionStable
+          variable:
+            value: helm.toolkit.fluxcd.io/v2
+      match:
+        any:
+          - resources:
+              kinds:
+                - HelmRelease
+      validate:
+        message: >-
+          Kind "{{ request.object.kind }}" with
+          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+          is using deprecated API version "{{ request.object.apiVersion }}".
+          Use API version "{{ validHelmControllerApiVersionStable }}".
+          See: https://v2-4.docs.fluxcd.io/flux/components/helm/api/v2/
+        pattern:
+          apiVersion: "{{ validHelmControllerApiVersionStable }}"
+    - name: source-controller-api-v1
+      context:
+        - name: validSourceControllerApiVersionStable
+          variable:
+            value: source.toolkit.fluxcd.io/v1
+      match:
+        any:
+          - resources:
+              kinds:
+                - source.toolkit.fluxcd.io/*/Bucket
+                - source.toolkit.fluxcd.io/*/GitRepository
+                - source.toolkit.fluxcd.io/*/HelmChart
+                - source.toolkit.fluxcd.io/*/HelmRepository
+      validate:
+        message: >-
+          Kind "{{ request.object.kind }}" with
+          name "{{ request.object.metadata.name }}" in namespace "{{ request.object.metadata.namespace }}"
+          is using deprecated API version "{{ request.object.apiVersion }}".
+          Use API version "{{ validSourceControllerApiVersionStable }}".
+          See: https://v2-4.docs.fluxcd.io/flux/components/source/api/v1/
+        pattern:
+          apiVersion: "{{ validSourceControllerApiVersionStable }}"
+
+# ---
+# apiVersion: kyverno.io/v1
+# kind: ClusterPolicy
+# metadata:
+#   name: flux-deprecated-api
+#   annotations:
+#     policies.kyverno.io/title: Check for deprecated HelmRelease API version
+#     policies.kyverno.io/category: Flux
+#     policies.kyverno.io/minversion: 1.13.0
+#     policies.kyverno.io/severity: medium
+#     policies.kyverno.io/subject: Flux APIs
+# spec:
+#   background: true
+#   rules:
+#   - name: validate-flux-v2.4-removal
+#     match:
+#       any:
+#       - resources:
+#           kinds:
+#           - helm.toolkit.fluxcd.io/v1/HelmRelease
+#     validate:
+#       message: "HelmRelease with helm.toolkit.fluxcd.io/v1 API version found. Consider updating to a newer API version."
+#       deny: {} # this will create a policy violation.
 
     # match:
     #   any:
