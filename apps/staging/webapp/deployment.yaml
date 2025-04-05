@@ -22,8 +22,8 @@ spec:
         ports:
         - containerPort: 5000
         env:            
-          - name: SECRET_SAUCE              
-            valueFrom:                
-              secretKeyRef:                  
-                name: secret-sauce                  
-                key: SECRET_SAUCE  
+        - name: SECRET_SAUCE              
+          valueFrom:                
+            secretKeyRef:                  
+              name: secret-sauce                  
+              key: SECRET_SAUCE  
