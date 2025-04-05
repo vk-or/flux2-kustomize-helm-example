@@ -18,4 +18,4 @@ spec:
           image: app          
           imagePullPolicy: Never          
           ports:            
-            - containerPort: 5000
+          - containerPort: 5000
