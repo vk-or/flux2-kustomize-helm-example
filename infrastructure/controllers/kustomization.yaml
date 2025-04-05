@@ -4,4 +4,4 @@ resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
   - kyverno.yaml
-
+  - external-secrets.yaml
