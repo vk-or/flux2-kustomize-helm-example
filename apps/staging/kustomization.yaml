@@ -1,6 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: podinfo
+metadata:
+  name: podinfo
+  namespace: podinfo
 resources:
   - ../base/podinfo
 patches:
@@ -10,6 +12,8 @@ patches:
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
+metadata:
+  name: webapp
+  namespace: default
 resources:
   - webapp/deployment.yaml
