@@ -6,3 +6,4 @@ resources:
   - kyverno.yaml
   - external-secrets.yaml
   - reloader.yaml
+  - doppler.yaml
