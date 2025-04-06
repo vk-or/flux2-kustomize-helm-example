@@ -9,3 +9,4 @@ resources:
   - secretstore.yaml
   - externalsecret.yaml
   - service.yaml
+  - clusterexternalsecret.yaml
