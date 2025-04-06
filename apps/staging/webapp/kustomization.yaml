@@ -4,6 +4,7 @@ metadata:
   name: webapp
   namespace: webapp
 resources:
+  - namespace.yaml
   - deployment.yaml
   - secretstore.yaml
   - externalsecret.yaml
