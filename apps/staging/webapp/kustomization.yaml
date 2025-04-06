@@ -7,3 +7,4 @@ resources:
   - deployment.yaml
   - secretstore.yaml
   - externalsecret.yaml
+  - service.yaml
