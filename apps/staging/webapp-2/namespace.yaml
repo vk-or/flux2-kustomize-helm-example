@@ -4,3 +4,4 @@ metadata:
   name: webapp-2
   labels:
     toolkit.fluxcd.io/tenant: dev-team
+    cool: label
