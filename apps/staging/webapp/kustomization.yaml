@@ -11,3 +11,4 @@ resources:
   - service.yaml
   - clustersecretstore.yaml
   - clusterexternalsecret.yaml
+  - doppler-secret-wepapp.yaml
