@@ -4864,7 +4864,7 @@ spec:
       - args:
         - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
         - --watch-all-namespaces=true
-        - --log-level=debug
+        - --log-level=trace
         - --log-encoding=json
         - --enable-leader-election
         - --storage-path=/data
