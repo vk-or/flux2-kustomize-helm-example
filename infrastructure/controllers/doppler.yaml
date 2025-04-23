@@ -21,7 +21,7 @@ metadata:
   name: doppler-kubernetes-operator
   namespace: doppler-operator-system
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: doppler-kubernetes-operator
